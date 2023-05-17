@@ -116,7 +116,7 @@ const moviesController = {
             console.log(error)
         }
     },
-    erase: async function (req, res) {
+    delete: async function (req, res) {
         try {
             let Movie =await Movies.findByPk(req.params.id)
             console.log("Movie")
@@ -128,13 +128,14 @@ const moviesController = {
 
     },
     destroy: async function (req, res) {
-        let { id } = req.params.id
+        
         try {
             Movies.destroy({
                 where: {
-                    id
+                    id : req.params.id
                 }
             })
+            res.redirect("/movies")
         } catch (error) {
 
         }
